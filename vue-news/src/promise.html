@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Callback</title>
+    </head>
+    <body>
+        <div>jquery ajax</div>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script>
+            function callAjax() {
+                return new Promise(function(resolve, reject){
+                    $.ajax({
+                        url: 'https://api.hnpwa.com/v0/news/1.json',
+                        success: function(data) {
+                            resolve(data);
+                        }
+                    });
+                });
+            }   
+
+            function fetchData() {
+                // 1
+                var result = [];
+
+                callAjax()
+                .then(function(data) {
+                    console.log('데이터 호출 결과', data);
+                    result = data;
+                    console.log('함수 결과', result);
+                });
+            }
+
+            fetchData();
+        </script>
+    </body>
+</html>
